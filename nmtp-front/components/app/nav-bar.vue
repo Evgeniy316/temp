@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter  } from 'vue-router'
+import { FrontPaths } from '~/utils/constants/frontEndRoutes'
 
 const router = useRouter() 
 const route = useRoute()
@@ -22,6 +23,20 @@ async function handleClick() {
     })
   }
 }
+
+onMounted(async () => {
+  try {
+    let res = await $fetch(`${FrontPaths.BALANCE}/${user.value.id}`,{
+      method: "POST"
+    })
+    let session = useUserSession()
+    await session.fetch()
+    // console.log(res)
+  } catch (error) {
+    console.error('Failed to fetch balance:', error)
+  }
+})
+
 
 function goToIndex() {
   router.push({ name: 'index' })

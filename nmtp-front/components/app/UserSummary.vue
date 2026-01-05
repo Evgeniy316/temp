@@ -159,7 +159,10 @@ async function onSubmit(formData : EditUserForm) {
 
   } finally {
     const userSession = useUserSession()
+    // console.log(userSession)
     userSession.fetch()
+    // console.log(user.value?.id),
+    // console.log(userName.value, " Username")
     isLoading.value = false
   }
 //   closeEdit()
